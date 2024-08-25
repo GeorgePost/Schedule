@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+body{
+  font-family: "Aldrich", sans-serif;
+  user-select: none;
+}
+.header{
+  font-family: "Aldrich", sans-serif;
+  background-color: #ee3e38;
+  color: white;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  .Logo{
+    padding-left: 2vh;
+  }
+  .Logo img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+  .Title{
+    font-size: 8vh;
+  }
+  .User{
+    background-color: #ee3e38;
+    padding: 2vh;
+    display: flex;
+  }
+  .User:hover{
+    filter: brightness(80%);
+  }
+  .User div{
+    padding-inline: 1vh;
+    font-size: 5vh;
+  }
+  
+}
+.Schedule{
+  background-color: #faff81;
+  color: #273043;
+  padding-top: 10vh;
+  font-size: 5vh;
+  text-align: center;
+  width: 100%;
+  .P1,.P2,.P3,.P4,.Lunch{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border: solid #808782;
+    border-width: 0vh 0vh 0.5vh;
+    padding: 0.5vh;
+  }
+}
+@media all and (max-width: 750px) {
+  .header{
+    .Title{
+      display: flex;
+      font-size: 4vh;
+      padding-inline: 1vh;
+      align-items: center;
+    }
+    .User div{
+      font-size: 3vh;
+      text-align: center;
+      display: flex;
+      align-items: center;
+    }
+    .User{
+      padding: 0vh;
+    }
+  }
+}
