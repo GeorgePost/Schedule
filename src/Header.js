@@ -35,6 +35,7 @@ function Header({gotUser}) {
         }
       }).then((res)=>{
         setEmail(res.email);
+        
       })
     }
     if(email){
