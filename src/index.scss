@@ -55,13 +55,25 @@ body{
   }
 }
 .background{
-  position: absolute;
-  top:0;
-  left:0;
-  bottom:0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
   opacity: 50%;
-  z-index:5;
+  z-index: 5;
+  background-color: black;
+  
+}
+.user{
+  background-color: white;
+  opacity: 100%;
+  position:fixed;
+  top:20%;
+  left:20%;
+  right:20%;
+  bottom:20%;
+  z-index: 10;
 }
 @media all and (max-width: 750px) {
   .header{
