@@ -7,39 +7,59 @@ import axios from "axios"
 function Header({gotUser}) {
   const [login,setLogin]=useState(false);
   const [loginEntry, setLoginEntry] = useState(undefined);
-  const [email,setEmail]=useState(undefined);
   const [user,setUser] = useState(undefined);
   const makeLoginEntry  = useGoogleLogin({
     onSuccess: (codeResponse) => setLoginEntry(codeResponse),
     onError: (error) => console.log('Login Failed:', error)
   });
-  async function fetchData (email){
-    await axios.get(`https://schedule-backend-l8j8.onrender.com/api/users/${email.toLowerCase()}`,{}).then((r)=>
+  async function fetchData (user){
+    const u= user;
+    setUser(undefined);
+    console.log(u);
+    await axios.get(`https://schedule-backend-l8j8.onrender.com/api/users/${u.email.toLowerCase()}`,{}).then((r)=>
       {
-        setUser(r);
-        setLogin(false);
+        if(r.data){
+          gotUser(r.data);
+        }
       }
-    ).catch(()=>{
-      alert("User Not Found")
+    ).catch((err)=>{
+      if(err.status===404){
+        console.log(u);
+        newUser(u);
+      }
+    })
+    
+  }
+  async function newUser(user){
+    await axios.post(`https://schedule-backend-l8j8.onrender.com/api/users`,{
+      name:user.name,
+      email:user.email,
+    },{
+      'Content-Type' : 'application/json; charset=utf-8',
+      'access-control-allow-credentials':"true",
+      'access-control-allow-headers':"X-Requested-With,content-type",
+      'access-control-allow-methods':'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+    }).catch(()=>{
+      alert("Couldn't Make User");
     })
   }
   useEffect( ()=>{
     if(user){
-      gotUser(user);
-    }
-    if(loginEntry){
+      setLogin(false);
+      setLoginEntry(undefined);
+      fetchData(user);
+    }else if(loginEntry){
+      console.log(loginEntry);
        axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${loginEntry.access_token}`,{
         headers:{
           Authorization: `Bearer ${loginEntry.access_token}`,
           Accept: 'application/json',
         }
       }).then((res)=>{
-        setEmail(res.email);
-        
+        setUser(res.data);
+      }).catch((err)=>{
+        console.log(err);
       })
-    }
-    if(email){
-      fetchData(email);
     }
   })
   
