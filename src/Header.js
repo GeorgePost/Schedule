@@ -39,7 +39,9 @@ function Header({gotUser}) {
       'access-control-allow-credentials':"true",
       'access-control-allow-headers':"X-Requested-With,content-type",
       'access-control-allow-methods':'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-    }).catch(()=>{
+    }).then((r)=>{
+      gotUser(r);
+    }) .catch(()=>{
       alert("Couldn't Make User");
     })
   }
