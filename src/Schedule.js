@@ -4,11 +4,11 @@ function Schedule({day,P1,P2,P3,P4}) {
         <>
             <div className="Schedule">
                 <div className="P1">
-                    <div>9:00<br/>10:15</div>
+                    <div>9:00<br/>10:20</div>
                     <div>{P1}</div>
                 </div>
                 <div className="P2">
-                    <div>10:20<br/>11:40</div>
+                    <div>10:25<br/>11:40</div>
                     <div>{P2}</div>
                 </div>
                 <div className="Lunch">

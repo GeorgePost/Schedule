@@ -29,6 +29,9 @@ body{
     background-color: #ee3e38;
     padding: 2vh;
     display: flex;
+    .icon{
+      height: 8vh;
+    }
   }
   .User:hover{
     filter: brightness(80%);
@@ -74,6 +77,7 @@ body{
   right:20%;
   bottom:20%;
   z-index: 10;
+  
 }
 @media all and (max-width: 750px) {
   .header{
